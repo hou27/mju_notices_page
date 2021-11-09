@@ -29,7 +29,7 @@ export class Notice {
     
     @Field((type) => Date)
     @Prop()
-	  createdAt: Date;
+    createdAt: Date;
     
     @Field((type) => [Data])
     @Prop([Data])
