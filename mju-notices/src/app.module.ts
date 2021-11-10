@@ -16,7 +16,7 @@ import { NoticesModule } from './notices/notices.module';
     MongooseModule.forRoot(
       `mongodb+srv://jalapeno:${encodeURIComponent(
         process.env.DB_PW,
-      )}@cluster211105.liaeo.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`,
+      )}@cluster211105.liaeo.mongodb.net/mju_notice?retryWrites=true&w=majority`,
     ),
     GraphQLModule.forRoot({
 			autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
