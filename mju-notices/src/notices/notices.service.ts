@@ -13,18 +13,13 @@ export class NoticeService {
     
     async loadNotices(): Promise<NoticesOutput> {
 		try {
-			const exists = await this.NoticeModel.find();
-			if (!exists) {
+			const notices = await this.NoticeModel.find();
+			if (!notices) {
 				return { ok: false, error: 'There is no data' };
 			}
-
-			return { ok: true };
+			return { ok: true, notices };
 		} catch (e) {
 			return { ok: false, error: "Couldn't load notices" };
 		}
-	}
-
-	async getAll(): Promise<Notice[]> {
-		return this.NoticeModel.find();
 	}
 }
