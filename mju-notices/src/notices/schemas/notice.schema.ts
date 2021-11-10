@@ -7,8 +7,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { IsString, Length } from 'class-validator';
 import { Document } from 'mongoose';
 
-export type NoticeDocument = Notice & Document;
-
+@ObjectType()
 export class Data {
   @Field((type) => String)
   @Prop()
@@ -22,7 +21,8 @@ export class Data {
 }
 
 @Schema()
-export class Notice {
+@ObjectType()
+export class Notice extends Document {
     @Field((type) => String)
     @Prop()
     search_value: string;

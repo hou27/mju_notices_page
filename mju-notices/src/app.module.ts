@@ -3,6 +3,8 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule } from '@nestjs/config';
+import { GraphQLModule } from '@nestjs/graphql';
+import { join } from 'path';
 import { NoticesModule } from './notices/notices.module';
 
 @Module({
@@ -16,6 +18,9 @@ import { NoticesModule } from './notices/notices.module';
         process.env.DB_PW,
       )}@cluster211105.liaeo.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`,
     ),
+    GraphQLModule.forRoot({
+			autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
+		}),
     NoticesModule,
   ],
   controllers: [AppController],

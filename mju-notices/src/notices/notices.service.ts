@@ -1,14 +1,14 @@
 import { Model } from 'mongoose';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Notice, NoticeDocument } from './schemas/notice.schema';
+import { Notice } from './schemas/notice.schema';
 import { NoticesOutput } from './dtos/notices.dto';
 
 @Injectable()
 export class NoticeService {
     constructor(
         @InjectModel('Notice')
-        private readonly NoticeModel: Model<NoticeDocument>
+        private readonly NoticeModel: Model<Notice>
     ) {}
     
     async loadNotices(): Promise<NoticesOutput> {
@@ -22,5 +22,9 @@ export class NoticeService {
 		} catch (e) {
 			return { ok: false, error: "Couldn't load notices" };
 		}
+	}
+
+	async getAll(): Promise<Notice[]> {
+		return this.NoticeModel.find();
 	}
 }

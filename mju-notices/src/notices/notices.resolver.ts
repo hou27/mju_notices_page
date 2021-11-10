@@ -7,9 +7,9 @@ import { NoticesOutput } from './dtos/notices.dto';
 export class NoticeResolver {
 	constructor(private readonly noticesService: NoticeService) {}
 
-	@Query((returns) => Boolean)
-	rootQuery() {
-		return true;
+	@Query((returns) => [Notice])
+	rootQuery(): Promise<Notice[]> {
+		return this.noticesService.getAll();
 	}
 	
 	@Query((returns) => NoticesOutput)
